@@ -193,9 +193,9 @@ const ProjectsPage = () => {
         <div className="p-8 w-full max-w-7xl mx-auto bg-white shadow-md rounded-lg mb-10 min-h-[75vh]">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold">Projects</h1>
-            <Link to="/meeting">
+            <Link to="/createproject">
               <button className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-                Create Meet
+                 Create Project
               </button>
             </Link>
           </div>
