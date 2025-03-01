@@ -39,21 +39,54 @@ export const handleGetProject = async (req: Request, res: Response) => {
     return res.status(200).json({ projects });
 };
 
+// export const getAllProjects = async (req: Request, res: Response) => {
+//     try {
+//         const { userId } = req.params; // Get userId from request parameters
+        
+//         if (!userId) {
+//             return res.status(400).json({ message: "User ID is required" });
+//         }
+
+//         const projects = await projectModel.find({ userId }); // Fetch projects for the specific user
+
+//         res.status(200).json({
+//             message: "Fetched all projects for the user",
+//             data: projects
+//         });
+//         return
+//     } catch (error: any) {
+//         console.error("Error occurred:", error);
+//         res.status(500).json({
+//             message: "Server error",
+//             error: error.message,
+//         });
+//         return;
+//     }
+// };
+
 export const getAllProjects = async (req: Request, res: Response) => {
     try {
+        console.log("Incoming request to fetch projects"); // ✅ Log request start
+        console.log("Request params:", req.params); // ✅ Log params
+
         const { userId } = req.params; // Get userId from request parameters
-        
+
         if (!userId) {
+            console.error("User ID is missing in the request.");
             return res.status(400).json({ message: "User ID is required" });
         }
 
+        console.log("Searching for projects with userId:", userId); // ✅ Log userId
+
         const projects = await projectModel.find({ userId }); // Fetch projects for the specific user
+
+        console.log("Projects found:", projects); // ✅ Log fetched projects
 
         res.status(200).json({
             message: "Fetched all projects for the user",
             data: projects
         });
-        return
+        return;
     } catch (error: any) {
         console.error("Error occurred:", error);
         res.status(500).json({
@@ -63,6 +96,7 @@ export const getAllProjects = async (req: Request, res: Response) => {
         return;
     }
 };
+
 
 export const handleUpdateProject = async (req: Request, res: Response) => {
     const { title, description, projectType, projectPicture, startDate, endDate, projectRoles } = req.body;
